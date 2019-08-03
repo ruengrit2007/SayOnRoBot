@@ -1,5 +1,5 @@
 <?php
-   $accessToken = "pUSNzzZen370jm5bI5kLCmfbikfsjNmZ91BDlseT7uqm4psB6dUFRa9iC8grOXVCzHahbJoufFH/ez6U0j0ZcwHjX9tiXs3k4fECDbuQNOArtHhAl0BOm4GLen8gM12h8+YzOdqNAmdGMy+UTtxn9gdB04t89/1O/w1cDnyilFU=";
+   $accessToken = "pUSNzzZen370jm5bI5kLCmfbikfsjNmZ91BDlseT7uqm4psB6dUFRa9iC8grOXVCzHahbJoufFH/ez6U0j0ZcwHjX9tiXs3k4fECDbuQNOArtHhAl0BOm4GLen8gM12h8+YzOdqNAmdGMy+UTtxn9gdB04t89/1O/w1cDnyilFU=";//copy ข้อความ Channel access token ตอนที่ตั้งค่า
    $content = file_get_contents('php://input');
    $arrayJson = json_decode($content, true);
    $arrayHeader = array();
@@ -10,13 +10,13 @@
    //รับ id ของผู้ใช้
    $id = $arrayJson['events'][0]['source']['userId'];
    #ตัวอย่าง Message Type "Text + Sticker"
-   if($message == "1"){
+   if($message == "On"){
       $arrayPostData['to'] = $id;
       $arrayPostData['messages'][0]['type'] = "text";
-      $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา";
+      $arrayPostData['messages'][0]['text'] = "สั่งทดสอบระบบ...ถ้าไฟสีฟ้าติดคือพร้อมครับ";
       $arrayPostData['messages'][1]['type'] = "sticker";
-      $arrayPostData['messages'][1]['packageId'] = "2";
-      $arrayPostData['messages'][1]['stickerId'] = "34";
+      $arrayPostData['messages'][1]['packageId'] = "4";
+      $arrayPostData['messages'][1]['stickerId'] = "275";
       pushMsg($arrayHeader,$arrayPostData);
    }
    function pushMsg($arrayHeader,$arrayPostData){
