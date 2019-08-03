@@ -5,20 +5,12 @@
    $arrayHeader = array();
    $arrayHeader[] = "Content-Type: application/json";
    $arrayHeader[] = "Authorization: Bearer {$accessToken}";
-
+   //รับข้อความจากผู้ใช้
    $message = $arrayJson['events'][0]['message']['text'];
-
-   if(isset($arrayJson['events'][0]['source']['userId']){
-      $id = $arrayJson['events'][0]['source']['userId'];
-   }
-   else if(isset($arrayJson['events'][0]['source']['groupId'])){
-      $id = $arrayJson['events'][0]['source']['groupId'];
-   }
-   else if(isset($arrayJson['events'][0]['source']['room'])){
-      $id = $arrayJson['events'][0]['source']['room'];
-   }
-
-   if($message == "สวัสดี"){
+   //รับ id ของผู้ใช้
+   $id = $arrayJson['events'][0]['source']['userId'];
+   #ตัวอย่าง Message Type "Text + Sticker"
+   if($message == "1"){
       $arrayPostData['to'] = $id;
       $arrayPostData['messages'][0]['type'] = "text";
       $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา";
@@ -27,9 +19,9 @@
       $arrayPostData['messages'][1]['stickerId'] = "34";
       pushMsg($arrayHeader,$arrayPostData);
    }
-function pushMsg($arrayHeader,$arrayPostData){
+   function pushMsg($arrayHeader,$arrayPostData){
       $strUrl = "https://api.line.me/v2/bot/message/push";
-$ch = curl_init();
+      $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL,$strUrl);
       curl_setopt($ch, CURLOPT_HEADER, false);
       curl_setopt($ch, CURLOPT_POST, true);
@@ -40,5 +32,5 @@ $ch = curl_init();
       $result = curl_exec($ch);
       curl_close ($ch);
    }
-exit;
+   exit;
 ?>
