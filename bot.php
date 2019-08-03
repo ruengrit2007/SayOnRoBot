@@ -18,7 +18,7 @@
       $id = $arrayJson['events'][0]['source']['room'];
    }
 #ตัวอย่าง Message Type "Text + Sticker"
-   if($message == "On"){
+   if($message == "Test"){
       $arrayPostData['to'] = $id;
       $arrayPostData['messages'][0]['type'] = "text";
       $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าา";
